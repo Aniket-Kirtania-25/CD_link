@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXÉ — Contemporary Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #F5F1E8;
+            --color-charcoal: #2A2A2A;
+            --color-rust: #C74B3E;
+            --color-sage: #8B9B88;
+            --color-gold: #D4AF37;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Work Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-cream);
+            color: var(--color-charcoal);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(245, 241, 232, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(42, 42, 42, 0.1);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--color-charcoal);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-charcoal);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-rust);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-actions button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--color-charcoal);
+            transition: transform 0.2s;
+        }
+
+        .nav-actions button:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            background-color: var(--color-rust);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            position: relative;
+            top: -8px;
+            left: -5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--color-charcoal);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background-color: var(--color-charcoal);
+            color: var(--color-cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-rust);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            border-color: var(--color-rust);
+        }
+
+        .hero-image {
+            position: relative;
+            height: 600px;
+            animation: fadeInUp 0.8s ease-out 0.5s backwards;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background-color: var(--color-rust);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            text-align: center;
+            animation: rotate 20s linear infinite;
+            box-shadow: 0 10px 40px rgba(199, 75, 62, 0.3);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 8rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 0.05em;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #E8E4DA;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(42, 42, 42, 0.9), transparent);
+            padding: 3rem 2rem 2rem;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .category-card:hover .category-overlay {
+            background: linear-gradient(to top, rgba(199, 75, 62, 0.95), transparent);
+        }
+
+        .category-overlay h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-overlay p {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Featured Products */
+        .featured-products {
+            padding: 8rem 4rem;
+            background-color: white;
+        }
+
+        .products-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .product-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background-color: #F5F5F5;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-image img.secondary {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .product-card:hover .product-image img.secondary {
+            opacity: 1;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--color-sage);
+            color: white;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .product-info h4 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-charcoal);
+        }
+
+        .product-price .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 0.5rem;
+            font-weight: 400;
+        }
+
+        .quick-add {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            background-color: white;
+            border: 2px solid var(--color-charcoal);
+            padding: 0.8rem 2rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .product-card:hover .quick-add {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .quick-add:hover {
+            background-color: var(--color-charcoal);
+            color: white;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 8rem 4rem;
+            background-color: var(--color-charcoal);
+            color: var(--color-cream);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(245, 241, 232, 0.3);
+            background-color: transparent;
+            color: var(--color-cream);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(245, 241, 232, 0.5);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--color-cream);
+        }
+
+        .newsletter-form button {
+            padding: 1.2rem 2.5rem;
+            background-color: var(--color-rust);
+            border: none;
+            color: white;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #A83D32;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-charcoal);
+            color: var(--color-cream);
+            padding: 5rem 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            line-height: 1.8;
+            color: rgba(245, 241, 232, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--color-cream);
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--color-rust);
+        }
+
+        .footer-column h4 {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul li a {
+            color: rgba(245, 241, 232, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--color-cream);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(245, 241, 232, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(245, 241, 232, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 968px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                padding: 0 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">LUXÉ</a>
+            <ul class="nav-links">
+                <li><a href="#new">New Arrivals</a></li>
+                <li><a href="#women">Women</a></li>
+                <li><a href="#men">Men</a></li>
+                <li><a href="#accessories">Accessories</a></li>
+                <li><a href="#sale">Sale</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button aria-label="Search">🔍</button>
+                <button aria-label="Account">👤</button>
+                <button aria-label="Cart">🛒<span class="cart-count">3</span></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Winter Collection 2026</h1>
+                <p>Discover our curated selection of timeless pieces crafted for the modern individual. Where sophistication meets contemporary design.</p>
+                <a href="#" class="cta-button">Explore Collection</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&h=1000&fit=crop" alt="Fashion model wearing winter collection">
+                <div class="hero-badge">New<br>Arrivals</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop" alt="Women's Fashion">
+                <div class="category-overlay">
+                    <h3>Women</h3>
+                    <p>Elegant & Refined</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&h=800&fit=crop" alt="Men's Fashion">
+                <div class="category-overlay">
+                    <h3>Men</h3>
+                    <p>Classic & Modern</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=600&h=800&fit=crop" alt="Accessories">
+                <div class="category-overlay">
+                    <h3>Accessories</h3>
+                    <p>Complete Your Look</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="products-container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">New</span>
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=500&fit=crop" alt="Cashmere Sweater" class="primary">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop" alt="Cashmere Sweater Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Cashmere Crew Sweater</h4>
+                        <p>Premium Knitwear</p>
+                        <div class="product-price">$245</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&h=500&fit=crop" alt="Wool Coat" class="primary">
+                        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400&h=500&fit=crop" alt="Wool Coat Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Double-Breasted Coat</h4>
+                        <p>Outerwear</p>
+                        <div class="product-price">$485</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Sale</span>
+                        <img src="https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=400&h=500&fit=crop" alt="Leather Bag" class="primary">
+                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=500&fit=crop" alt="Leather Bag Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Structured Leather Tote</h4>
+                        <p>Accessories</p>
+                        <div class="product-price">
+                            <span class="original-price">$340</span>
+                            $255
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400&h=500&fit=crop" alt="Oxford Shirt" class="primary">
+                        <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=400&h=500&fit=crop" alt="Oxford Shirt Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Classic Oxford Shirt</h4>
+                        <p>Essentials</p>
+                        <div class="product-price">$125</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">New</span>
+                        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=400&h=500&fit=crop" alt="Silk Scarf" class="primary">
+                        <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400&h=500&fit=crop" alt="Silk Scarf Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Printed Silk Scarf</h4>
+                        <p>Accessories</p>
+                        <div class="product-price">$95</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400&h=500&fit=crop" alt="Merino Cardigan" class="primary">
+                        <img src="https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=400&h=500&fit=crop" alt="Merino Cardigan Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Merino Wool Cardigan</h4>
+                        <p>Knitwear</p>
+                        <div class="product-price">$195</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1542219550-37153d387c94?w=400&h=500&fit=crop" alt="Chelsea Boots" class="primary">
+                        <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400&h=500&fit=crop" alt="Chelsea Boots Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Suede Chelsea Boots</h4>
+                        <p>Footwear</p>
+                        <div class="product-price">$325</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Sale</span>
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=500&fit=crop" alt="Turtleneck" class="primary">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop" alt="Turtleneck Alt" class="secondary">
+                        <button class="quick-add">Quick Add</button>
+                    </div>
+                    <div class="product-info">
+                        <h4>Fine Knit Turtleneck</h4>
+                        <p>Essentials</p>
+                        <div class="product-price">
+                            <span class="original-price">$165</span>
+                            $115
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Join Our Community</h2>
+            <p>Subscribe to receive exclusive offers, style inspiration, and early access to new collections.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>LUXÉ</h3>
+                <p>Contemporary fashion for the discerning individual. Timeless pieces crafted with exceptional attention to detail.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="Pinterest">📌</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUXÉ. All rights reserved. Designed with care.</p>
+        </div>
+    </footer>
+</body>
+</html>
